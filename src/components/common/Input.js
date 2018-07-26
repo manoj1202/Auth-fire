@@ -6,7 +6,8 @@ const Input = ({label, value, onChangeText, placeholder}) => {
     return(
         <View style = {containerStyle}>
             <Text style={labelStyle}>{label}</Text>
-            <TextInput 
+            <TextInput
+                 secureTextEntry={true}
                 autoCorrect = {false}
                 placeholder = {placeholder}
                 style = {inputStyle}
