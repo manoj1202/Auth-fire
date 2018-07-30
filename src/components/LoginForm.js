@@ -21,6 +21,14 @@ class LoginForm extends Component {
               })
          })
     }
+    onLoginSuccess(){
+        this.setState({
+            email:"",
+            password:"",
+            loading: false,
+            error:""
+        })
+    }
 
     renderButton(){
         if(this.state.loading){
