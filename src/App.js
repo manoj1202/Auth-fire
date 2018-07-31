@@ -1,7 +1,7 @@
 import React,{Component} from "react"
 import {View} from "react-native"
 // import firebase from "firebase"
-import {Header, Button} from "./components/common"
+import {Header, Button, Spinner} from "./components/common"
 import LoginForm from "./components/LoginForm"
 import { timingSafeEqual } from "crypto";
 
@@ -24,10 +24,19 @@ class App extends Component{
     // }
 
     renderContent(){
+        switch(this.state.loggedIn){
+            case true:
+                return <Button>Log out </Button>
+            case false:
+                return <LoginForm />
+            default:
+                return <Spinner size="large" />
+        }
+
         if(this.state.loggedIn){
             return(
                 <Button>
-                  Log Out
+                   Log Out
                 </Button>
             )
         }
