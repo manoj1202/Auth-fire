@@ -32,17 +32,7 @@ class App extends Component{
             default:
                 return <Spinner size="large" />
         }
-
-        if(this.state.loggedIn){
-            return(
-                <Button>
-                   Log Out
-                </Button>
-            )
-        }
-
-        return <LoginForm />
-    }
+     }
 
     render(){
         return(
