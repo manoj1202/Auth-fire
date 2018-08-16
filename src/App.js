@@ -1,49 +1,53 @@
-import React,{Component} from "react"
-import {View} from "react-native"
-// import firebase from "firebase"
-import {Header, Button, Spinner} from "./components/common"
+import React ,{Component} from "react"
+import { View} from "react-native"
+import {Header, Button,Spinner  } from "./components/common"
+import firebase from "firebase"
 import LoginForm from "./components/LoginForm"
-import { timingSafeEqual } from "crypto";
-
 
 class App extends Component{
-    state ={
-        loggedIn: null
-    }
-    // Adding FireBase To  the app
-    // componentWillMount(){
-    //     firebase.initializeApp({/*   firebase data */})
+    state = {loggedIn : null}
 
-    // firebase.auth().onAuthStateChanged((user) => {
-    //  if(user){
-        // this.setState({loggedIn: true});
-        // } else{
-        //     this.setState({loggedIn: false})
-        // }
-    // })
-    // }
+    componentWillMount(){
+        firebase.initializeApp({
+            apiKey: "AIzaSyDNL6_GXv_aP3vWS9g7MuNTnPjCOHBXxPk",
+            authDomain: "authentication-cb7bb.firebaseapp.com",
+            databaseURL: "https://authentication-cb7bb.firebaseio.com",
+            projectId: "authentication-cb7bb",
+            storageBucket: "authentication-cb7bb.appspot.com",
+            messagingSenderId: "100089549295"
+        })
+
+        firebase.auth().onAuthStateChanged((user) =>{
+            if(user){
+                this.setState({loggedIn: true})
+            }else {
+                this.setState({loggedIn: false})
+            }
+        })        
+    }
 
     renderContent(){
         switch(this.state.loggedIn){
             case true:
-                return <Button onPress={() => firebase.auth().signOut()}>
-                            Log out 
-                        </Button>
+                return (
+                    <Button onPress = {() => firebase.auth().signOut()}>
+                        Log Out
+                    </Button>
+                )
             case false:
                 return <LoginForm />
             default:
-                return <Spinner size="large" />
+             return <Spinner size= "large" />
         }
-     }
+    }
 
     render(){
         return(
             <View>
                 <Header headerText="Authentication" />
-                {this.renderContent()}
+                 {this.renderContent()}
             </View>
         )
     }
 }
-
-export default App
+ export default App
